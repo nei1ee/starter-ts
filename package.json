@@ -1,8 +1,7 @@
 {
-  "name": "pkg-name",
+  "name": "@zguolee/pkg-name",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@7.2.1",
   "description": "",
   "author": "Neil Lee <zguolee@foxmail.com>",
   "license": "MIT",
@@ -25,22 +24,14 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
-    "prepublishOnly": "nr build",
-    "release": "bumpp && npm publish",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp && pnpm publish",
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
@@ -48,15 +39,15 @@
     "lint:fix": "nr lint --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.35.2",
-    "@types/node": "^18.14.0",
-    "bumpp": "^8.2.1",
-    "eslint": "^8.34.0",
+    "@antfu/eslint-config": "^0.39.3",
+    "@types/node": "^20.2.3",
+    "bumpp": "^9.1.0",
+    "eslint": "^8.41.0",
     "esno": "^0.16.3",
-    "rimraf": "^4.1.2",
-    "typescript": "^4.9.5",
-    "unbuild": "^1.1.2",
-    "vite": "^4.1.4",
-    "vitest": "^0.28.5"
+    "rimraf": "^5.0.1",
+    "typescript": "^5.0.4",
+    "unbuild": "^1.2.1",
+    "vite": "^4.3.8",
+    "vitest": "^0.31.1"
   }
 }
