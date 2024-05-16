@@ -1,57 +1,73 @@
 {
-  "name": "@zguolee/pkg-name",
+  "name": "starter-ts-placeholder",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@8.6.2",
-  "description": "",
-  "author": "Neil Lee <zguolee@foxmail.com>",
+  "packageManager": "pnpm@9.1.1",
+  "description": "_description_",
+  "author": "Neil <zguolee@foxmail.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/zguolee",
-  "homepage": "https://github.com/zguolee/pkg-name#readme",
+  "homepage": "https://github.com/zguolee/starter-ts#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zguolee/pkg-name.git"
+    "url": "git+https://github.com/zguolee/starter-ts.git"
   },
-  "bugs": "https://github.com/zguolee/pkg-name/issues",
+  "bugs": "https://github.com/zguolee/starter-ts/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
-    },
-    "./*": "./*"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
   },
-  "main": "./src/index.ts",
-  "publishConfig": {
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "unbuild --stub",
     "build": "unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
     "release": "bumpp",
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "lint:fix": "nr lint --fix"
+    "prepare": "simple-git-hooks"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.3",
-    "@types/node": "^20.2.5",
-    "bumpp": "^9.1.0",
-    "eslint": "^8.41.0",
-    "esno": "^0.16.3",
-    "rimraf": "^5.0.1",
-    "typescript": "^5.0.4",
-    "unbuild": "^1.2.1",
-    "vite": "^4.3.9",
-    "vitest": "^0.31.1"
+    "@antfu/eslint-config": "^2.17.0",
+    "@antfu/ni": "^0.21.12",
+    "@antfu/utils": "^0.7.8",
+    "@types/node": "^20.12.11",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.2.0",
+    "esno": "^4.7.0",
+    "lint-staged": "^15.2.2",
+    "pnpm": "^9.1.0",
+    "rimraf": "^5.0.7",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.4.5",
+    "unbuild": "^2.0.0",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
