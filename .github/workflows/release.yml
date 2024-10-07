@@ -1,5 +1,9 @@
 name: Release
 
+permissions:
+  id-token: write
+  contents: write
+
 on:
   push:
     tags:
@@ -14,17 +18,16 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
 
       - name: Set node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: pnpm
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: https://registry.npmjs.org/
 
-      - run: npx changelogithub
-        continue-on-error: true
+      - name: Publish changelog to GitHub
+        run: pnpm dlx changelogithub
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
